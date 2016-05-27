@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "376322665664",
+    "firebase_url": "https://ecomeal-b7b8c.firebaseio.com",
+    "project_id": "ecomeal-b7b8c",
+    "storage_bucket": "ecomeal-b7b8c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376322665664:android:8d414ea731768793",
+        "android_client_info": {
+          "package_name": "de.ecomeal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376322665664-opea4lj72vkgp0v1s5bokn8p893gvpei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc2t24txnRnd-fv4igFYb--dWGdULcKmY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

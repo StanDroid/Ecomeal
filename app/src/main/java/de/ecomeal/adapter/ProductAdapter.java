@@ -1,4 +1,4 @@
-package de.ecomeal.ecomeal.adapter;
+package de.ecomeal.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,9 +9,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import de.ecomeal.ecomeal.R;
-import de.ecomeal.ecomeal.interfaces.OnListItemClickListener;
-import de.ecomeal.ecomeal.model.Product;
+import de.ecomeal.R;
+import de.ecomeal.interfaces.OnListItemClickListener;
+import de.ecomeal.model.Product;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 

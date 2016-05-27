@@ -1,4 +1,4 @@
-package de.ecomeal.ecomeal.interfaces;
+package de.ecomeal.interfaces;
 
 import android.support.v4.app.Fragment;
 

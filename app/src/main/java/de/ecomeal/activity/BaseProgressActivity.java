@@ -1,4 +1,4 @@
-package de.ecomeal.ecomeal.activity;
+package de.ecomeal.activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;

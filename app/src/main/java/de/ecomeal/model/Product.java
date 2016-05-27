@@ -1,7 +1,6 @@
-package de.ecomeal.ecomeal.model;
+package de.ecomeal.model;
 
 
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 
 /**

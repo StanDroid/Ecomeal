@@ -1,4 +1,4 @@
-package de.ecomeal.ecomeal.interfaces;
+package de.ecomeal.interfaces;
 
 /**
  * Created by LS on 26.05.2016.

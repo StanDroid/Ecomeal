@@ -1,4 +1,4 @@
-package de.ecomeal.ecomeal.activity;
+package de.ecomeal.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,26 +6,22 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import com.mikepenz.foundation_icons_typeface_library.FoundationIcons;
-import com.mikepenz.google_material_typeface_library.GoogleMaterial;
-import com.mikepenz.ionicons_typeface_library.Ionicons;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.icons.MaterialDrawerFont;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
-import de.ecomeal.ecomeal.fragment.WebFragment;
-import de.ecomeal.ecomeal.interfaces.ChangeFragmentListener;
-import de.ecomeal.ecomeal.fragment.ProductsFragment;
-import de.ecomeal.ecomeal.R;
+import de.ecomeal.fragment.WebFragment;
+import de.ecomeal.interfaces.ChangeFragmentListener;
+import de.ecomeal.fragment.ProductsFragment;
+import de.ecomeal.R;
 
 public class MainActivity extends BaseToolbarActivity implements ChangeFragmentListener {
 

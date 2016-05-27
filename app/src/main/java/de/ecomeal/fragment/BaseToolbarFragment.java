@@ -1,9 +1,9 @@
-package de.ecomeal.ecomeal.fragment;
+package de.ecomeal.fragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
-import de.ecomeal.ecomeal.activity.BaseToolbarActivity;
+import de.ecomeal.activity.BaseToolbarActivity;
 
 
 public class BaseToolbarFragment extends Fragment {

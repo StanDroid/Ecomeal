@@ -1,4 +1,4 @@
-package de.ecomeal.ecomeal.fragment;
+package de.ecomeal.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
-import de.ecomeal.ecomeal.R;
+import de.ecomeal.R;
 
 /**
  * Created by LS on 26.05.2016.

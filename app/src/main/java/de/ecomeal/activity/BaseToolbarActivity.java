@@ -1,8 +1,8 @@
-package de.ecomeal.ecomeal.activity;
+package de.ecomeal.activity;
 
 import android.widget.TextView;
 
-import de.ecomeal.ecomeal.R;
+import de.ecomeal.R;
 
 
 public class BaseToolbarActivity extends BaseProgressActivity {
