@@ -62,10 +62,12 @@ public class MainActivity extends BaseToolbarActivity implements ChangeFragmentL
                 .withSliderBackgroundColor(ContextCompat.getColor(this, R.color.red_ecomeal))
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Товары").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
+                        new PrimaryDrawerItem().withName("Новости").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
                         new PrimaryDrawerItem().withName("Где купить?").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
                         new PrimaryDrawerItem().withName("Партнерам").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
+
                         new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withName("Сертификаты").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
+                        new SecondaryDrawerItem().withName("О нас").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
                         new SecondaryDrawerItem().withName("Контакты").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal))
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {

@@ -7,23 +7,22 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.Query;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import de.ecomeal.R;
-import de.ecomeal.adapter.ProductAdapter;
+import de.ecomeal.adapter.ViewHolderProduct;
 import de.ecomeal.interfaces.OnListItemClickListener;
 import de.ecomeal.model.Product;
 
@@ -33,12 +32,8 @@ import de.ecomeal.model.Product;
 public class ProductsFragment extends BaseToolbarFragment implements OnListItemClickListener<Product> {
 
     //List
-    private RecyclerView rvChildren;
-    private List<Product> childrenList = new ArrayList<>();
-    private ProductAdapter productAdapter;
-    private Product product1;
-    private DatabaseReference reference;
-    private String TAG =" sds";
+    private RecyclerView rvProducts;
+    private FirebaseRecyclerAdapter<Product, ViewHolderProduct> mAdapter;
 
     public static ProductsFragment newInstance() {
         ProductsFragment fragment = new ProductsFragment();
@@ -51,99 +46,47 @@ public class ProductsFragment extends BaseToolbarFragment implements OnListItemC
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product, container, false);
 //        setToolbarTitle(R.string.children);
-        getProducts();
         initList(view);
+        initRecyclerAdapter();
         return view;
     }
 
+    private void initRecyclerAdapter() {
+        Query productsQuery = FirebaseDatabase.getInstance().getReference().child("Product");
+        mAdapter = new FirebaseRecyclerAdapter<Product, ViewHolderProduct>(Product.class, R.layout.item_product,
+                ViewHolderProduct.class, productsQuery) {
+            @Override
+            protected void populateViewHolder(final ViewHolderProduct viewHolder, final Product model, final int position) {
+
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Launch Details
+                        ImageView imageView = new ImageView(getActivity());
+                        Picasso.with(getActivity()).load(model.getImage()).into(imageView);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle(model.getName())
+                                .setMessage(model.getDetailDescriprtion())
+                                .setIcon(imageView.getDrawable())
+                                .setPositiveButton("Ok",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+                });
+                viewHolder.bind(getActivity(), model);
+            }
+        };
+        rvProducts.setAdapter(mAdapter);
+    }
+
     private void initList(View view) {
-        rvChildren = (RecyclerView) view.findViewById(R.id.rv_product);
-        rvChildren.setLayoutManager(new LinearLayoutManager(getActivity()));
-        productAdapter = new ProductAdapter(getActivity(),childrenList, this);
-        rvChildren.setAdapter(productAdapter);
-    }
-
-    private void getProducts() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myref = database.getReference("Product");
-        myref.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        myref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("Product",dataSnapshot.child("Product").getValue().toString());
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-//        reference = FirebaseDatabase.getInstance().getReference();
-//        reference.child("Product").addListenerForSingleValueEvent(
-//                new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        product1 = dataSnapshot.getValue(Product.class);
-//                        childrenList.add(product1);
-//                        int ik = 1;
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//                        Log.w(TAG, "getUser:onCancelled", databaseError.toException());
-//                    }
-//                });
-//
-//        product1 = new Product("Желтая мука", "https://firebasestorage.googleapis.com/v0/b/ecomeal-b7b8c.appspot.com/o/yellow_paket_500.png?alt=media&token=21202eff-a1d3-4b51-a58b-7d12c8e196a7", getString(R.color.md_yellow_800)
-//                , "Продукт создан из пшеничной муки высшего сорта с добавлением натурального желтого экстракта семян дерева Аннато. Этот экстракт богат на антиоксиданты, а по своей структуре и функциям в организме является схожими с витамином Е.");
-//        childrenList.add(product1);
-//        product1 = new Product("Голубая мука", ""+R.drawable.blue_paket_500, ""+R.color.md_blue_500
-//                , "Продукт создан из пшеничной муки высшего сорта с добавлением натурального голубого экстракта водоросли Спирулины. Содержит много белка и аминокислот. По количеству витаминов, превосходит большинство растений. В состав входят витамины E, B1, B2, B6, K, PP, C, D, пантотеновая и фолиевая кислоты, биотин.");
-//        childrenList.add(product1);
-//        product1 = new Product("Красная мука", ""+R.drawable.red_paket_500, "" + R.color.md_red_300
-//                , "Продукт создан из пшеничной муки высшего сорта с добавлением натурального красного пигмента получаемого из природной карминовой кислоты. Этот пигмент известен еще со времен индейцев Майя.");
-//        childrenList.add(product1);
-//        product1 = new Product("Черная мука", ""+ R.drawable.black_paket_500, ""+R.color.md_black_1000
-//                , "Продукт создан из пшеничной муки высшего сорта с добавлением натурального Бамбукового активированного угля. Растительный уголь - это проверенное средство для очищения кишечника и мощнейший антиоксидант. Выводит токсины и соли тяжелых металлов. Применяется при детокс-диетах.");
-//        childrenList.add(product1);
-//        product1 = new Product("Зеленая мука", ""+R.drawable.green_paket_500, ""+R.color.md_green_500
-//                , "Продукт создан из пшеничной муки высшего сорта с добавлением натурального зеленого экстракта «хлорофилла медных комплексов». Хлорофилл и его медные комплексы отлично подходят в качестве биологически-активных добавок, восстанавливающих уровень гемоглобина.");
-//        childrenList.add(product1);
-    }
-
-    private void saveProduct() {
-        reference = FirebaseDatabase.getInstance().getReference();
-        for (Product p: childrenList) {
-            reference.child("Product").push().setValue(p);
-        }
+        rvProducts = (RecyclerView) view.findViewById(R.id.rv_product);
+        rvProducts.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     @Override
@@ -160,7 +103,6 @@ public class ProductsFragment extends BaseToolbarFragment implements OnListItemC
                         });
         AlertDialog alert = builder.create();
         alert.show();
-//        saveProduct();
     }
 
 }
