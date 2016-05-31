@@ -7,7 +7,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.mikepenz.foundation_icons_typeface_library.FoundationIcons;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -18,10 +17,10 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
+import de.ecomeal.R;
+import de.ecomeal.fragment.ProductsFragment;
 import de.ecomeal.fragment.WebFragment;
 import de.ecomeal.interfaces.ChangeFragmentListener;
-import de.ecomeal.fragment.ProductsFragment;
-import de.ecomeal.R;
 
 public class MainActivity extends BaseToolbarActivity implements ChangeFragmentListener {
 
@@ -62,12 +61,12 @@ public class MainActivity extends BaseToolbarActivity implements ChangeFragmentL
                 .withAccountHeader(headerResult)
                 .withSliderBackgroundColor(ContextCompat.getColor(this, R.color.red_ecomeal))
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Товары").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)).withIcon(FoundationIcons.Icon.fou_marker),
-                        new PrimaryDrawerItem().withName("Где купить?").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)).withIcon(FoundationIcons.Icon.fou_marker),
-                        new PrimaryDrawerItem().withName("Партнерам").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)).withIcon(FoundationIcons.Icon.fou_torsos_all),
+                        new PrimaryDrawerItem().withName("Товары").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
+                        new PrimaryDrawerItem().withName("Где купить?").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
+                        new PrimaryDrawerItem().withName("Партнерам").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
                         new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withName("Сертификаты").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)).withIcon(FoundationIcons.Icon.fou_page_doc),
-                        new SecondaryDrawerItem().withName("Контакты").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)).withIcon(FoundationIcons.Icon.fou_telephone)
+                        new SecondaryDrawerItem().withName("Сертификаты").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
+                        new SecondaryDrawerItem().withName("Контакты").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal))
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -77,7 +76,7 @@ public class MainActivity extends BaseToolbarActivity implements ChangeFragmentL
                                 changeFragment(ProductsFragment.newInstance(),false);
                                 break;
                             case 2:
-                                changeFragment(WebFragment.newInstance("http://ecomeal.de/where-to-buy.html"),false);
+                                changeFragment(WebFragment.newInstance("http://m.vk.com/ecomeal.food"),false);
                                 break;
                         }
 
