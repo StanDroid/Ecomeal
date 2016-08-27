@@ -1,5 +1,6 @@
 package de.ecomeal.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +19,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import de.ecomeal.R;
+import de.ecomeal.fragment.AddressesFragment;
 import de.ecomeal.fragment.ProductsFragment;
 import de.ecomeal.fragment.WebFragment;
 import de.ecomeal.interfaces.ChangeFragmentListener;
@@ -35,8 +37,11 @@ public class MainActivity extends BaseToolbarActivity implements ChangeFragmentL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         initDrawer();
 //        initViews();
+
+
 
         changeFragment(getFragmentToStart(childViewFragment), false);
     }
@@ -68,6 +73,7 @@ public class MainActivity extends BaseToolbarActivity implements ChangeFragmentL
 
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName("О нас").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
+                        new SecondaryDrawerItem().withName("Корзина").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
                         new SecondaryDrawerItem().withName("Контакты").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal))
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -80,14 +86,19 @@ public class MainActivity extends BaseToolbarActivity implements ChangeFragmentL
                             case 2:
                                 changeFragment(WebFragment.newInstance("http://m.vk.com/ecomeal.food"),false);
                                 break;
+                            case 3:
+//                                startActivity(new Intent(MainActivity.this, AddressesActivity.class));
+                                changeFragment(AddressesFragment.newInstance(),false);
+                                break;
                         }
 
                         return false;
                     }
                 })
                 .build();
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//        result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
     }
-
 
     private Fragment getFragmentToStart(String nameFragment) {
         Fragment fragment = null;

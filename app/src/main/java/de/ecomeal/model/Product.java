@@ -1,8 +1,6 @@
 package de.ecomeal.model;
 
 
-import android.graphics.drawable.Drawable;
-
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**

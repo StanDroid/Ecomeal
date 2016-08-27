@@ -13,13 +13,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import de.ecomeal.R;
 import de.ecomeal.adapter.ViewHolderProduct;
@@ -29,7 +25,7 @@ import de.ecomeal.model.Product;
 /**
  * Created by LS on 26.05.2016.
  */
-public class ProductsFragment extends BaseToolbarFragment implements OnListItemClickListener<Product> {
+public class ProductsFragment extends BaseToolbarFragment{
 
     //List
     private RecyclerView rvProducts;
@@ -44,7 +40,7 @@ public class ProductsFragment extends BaseToolbarFragment implements OnListItemC
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_product, container, false);
+        View view = inflater.inflate(R.layout.fragment_recycler, container, false);
 //        setToolbarTitle(R.string.children);
         initList(view);
         initRecyclerAdapter();
@@ -85,24 +81,7 @@ public class ProductsFragment extends BaseToolbarFragment implements OnListItemC
     }
 
     private void initList(View view) {
-        rvProducts = (RecyclerView) view.findViewById(R.id.rv_product);
+        rvProducts = (RecyclerView) view.findViewById(R.id.recycler);
         rvProducts.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
-
-    @Override
-    public void onItemClick(int position, Product product) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(product.getName())
-                .setMessage(product.getDetailDescriprtion())
-                .setIcon(ContextCompat.getDrawable(getActivity(), Color.parseColor(product.getImage())))
-                .setPositiveButton("Ok",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-
 }
