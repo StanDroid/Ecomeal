@@ -6,12 +6,16 @@ package de.ecomeal.model;
 
 public class Address {
 
+    private double lat;
+    private double lng;
     private String line;
     private String obl;
     private boolean eat;
     private boolean buy;
 
-    public Address(String line, String obl, boolean eat, boolean buy) {
+    public Address(double lat, double lng, String line, String obl, boolean eat, boolean buy) {
+        this.lat = lat;
+        this.lng = lng;
         this.line = line;
         this.obl = obl;
         this.eat = eat;
@@ -20,6 +24,22 @@ public class Address {
 
     public Address() {
 
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 
     public String getLine() {

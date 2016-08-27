@@ -1,6 +1,5 @@
 package de.ecomeal.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -64,17 +63,17 @@ public class MainActivity extends BaseToolbarActivity implements ChangeFragmentL
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withAccountHeader(headerResult)
-                .withSliderBackgroundColor(ContextCompat.getColor(this, R.color.red_ecomeal))
+                .withSliderBackgroundColor(ContextCompat.getColor(this, R.color.white_ecomeal))
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Товары").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
-                        new PrimaryDrawerItem().withName("Новости").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
-                        new PrimaryDrawerItem().withName("Где купить?").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
-                        new PrimaryDrawerItem().withName("Партнерам").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
+                        new PrimaryDrawerItem().withName("Товары").withTextColor(ContextCompat.getColor(this, R.color.red_ecomeal)),
+                        new PrimaryDrawerItem().withName("Новости").withTextColor(ContextCompat.getColor(this, R.color.red_ecomeal)),
+                        new PrimaryDrawerItem().withName("Где купить?").withTextColor(ContextCompat.getColor(this, R.color.red_ecomeal)),
+                        new PrimaryDrawerItem().withName("Партнерам").withTextColor(ContextCompat.getColor(this, R.color.red_ecomeal)),
 
                         new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withName("О нас").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
-                        new SecondaryDrawerItem().withName("Корзина").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal)),
-                        new SecondaryDrawerItem().withName("Контакты").withTextColor(ContextCompat.getColor(this, R.color.white_ecomeal))
+                        new SecondaryDrawerItem().withName("О нас").withTextColor(ContextCompat.getColor(this, R.color.red_ecomeal)),
+                        new SecondaryDrawerItem().withName("Корзина").withTextColor(ContextCompat.getColor(this, R.color.red_ecomeal)),
+                        new SecondaryDrawerItem().withName("Контакты").withTextColor(ContextCompat.getColor(this, R.color.red_ecomeal))
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
